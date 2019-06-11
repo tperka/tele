@@ -17,8 +17,10 @@ class Detailed_TUser : public TUser
         age = ag;
         home_adress = ad;
     }
-
     void show();
+    ~Detailed_TUser(){}
+    friend std::ostream& operator<<(std::ostream& os, const Detailed_TUser& a);
 };
+std::ostream& operator<<(std::ostream& os, const Detailed_TUser& a);
 
 #endif

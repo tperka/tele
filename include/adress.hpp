@@ -9,6 +9,7 @@ class Adress
     public:
     Adress(std::string sn = " ", std::string c = " ",unsigned int hn = 0) : street_name(sn), city(c), house_number(hn)
     {}
+    void scan_Adress();
     friend std::ostream& operator<<(std::ostream& os, const Adress& a);
 };
 

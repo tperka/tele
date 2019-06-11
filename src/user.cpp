@@ -25,15 +25,11 @@ TUser::TUser(std::string na, std::string su, int nu, TData* a, double b)
     number = nu;
 
     adress = a;
-    due -= b;
+    
     Balance = TBalance(b);
 }
 
-//destruktor
-TUser::~TUser()
-{
-    std::cout <<"User " << name << " " << surname << " has been removed from database." << std::endl;
-}
+
 
 //wyświetlanie atrybutów użytkownika
 void TUser::show()
@@ -43,7 +39,6 @@ void TUser::show()
     std::cout << "number: " << number << std::endl;
     std::cout << "balance: " << Balance.getBalance() << std::endl;
     std::cout << "days left: " << Balance.getDaysLeft() << std::endl;
-    std::cout << "due: " << due << std::endl;
     std::cout << std::endl;
 }
 

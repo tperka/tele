@@ -14,6 +14,25 @@
 #include "Input.hpp"
 
 //dodawanie użytkownika
+TData::TData()
+{
+    TUser a("Jan", "Kowalski", 123456789, this, 100.0);
+    TUser b("Patryk", "Nowak", 112233445, this);
+    TUser c("Stephen", "Curry", 987654321, this);
+    Users.push_back(a);
+    Users.push_back(b);
+    Users.push_back(c);
+    Adress x("Bezowa", "Warszawa", 48); 
+    Adress y("Długa", "Wrocław", 216);
+    Adress z("Krótka", "Kraków", 2);
+    Detailed_TUser d("Kyle", "Quinn", 111111111, this, 22, x, 200);
+    Detailed_TUser e("Christina", "Quinn", 222222222, this, 32, y);
+    Detailed_TUser f("Kim", "Jenner", 333333333, this, 75, z);
+    D_Users.push_back(d);
+    D_Users.push_back(e);
+    D_Users.push_back(f);
+}
+
 void TData::addNewUser()
 {
     std::cout << "adding the new user" << std::endl;
@@ -42,6 +61,42 @@ void TData::addNewUser()
         std::cout << "Number's value has been set 0." << std::endl;
     }
     Users.push_back(TUser(name, surname, stoi(number), adress));
+}
+
+void TData::addNewDetailedUser()
+{
+    std::cout << "adding the new detailed user" << std::endl;
+    std::string name;
+    std::string surname;
+    std::string number;
+    Adress ad;
+    int age;
+    try
+    {
+        scanUser(name, surname, number);
+    }
+    catch(char)
+    {
+        std::cout << "Error! Input should be a number" << std::endl
+        << "Number's value has been set 0." << std::endl;
+    }
+    catch(int err)
+    {
+        if(err > 0)
+        {
+            std::cout << "You inserted " << err << "digits too much." << std::endl;
+        }
+        else
+        {
+            std::cout << "You inserted " << err*(-1) << " digits too little." << std::endl;
+        }
+        std::cout << "Number's value has been set 0." << std::endl;
+    }
+    
+    ad.scan_Adress();
+    std::cout << "#age:" << std::endl;
+    std::cin>>age;
+    D_Users.push_back(Detailed_TUser(name, surname, stoi(number), adress, age, ad));
 }
 
 //dodawanie użytkownika
@@ -82,7 +137,44 @@ void TData::addNewUserWithBalance()
 
     Users.push_back(TUser(name, surname, stoi(number), adress, balance));
 }
-
+void TData::addNewDetailedUserWithBalance()
+{
+    std::cout << "adding the new detailed user" << std::endl;
+    std::string name;
+    std::string surname;
+    std::string number;
+    Adress ad;
+    int age;
+    double balance;
+    try
+    {
+        scanUser(name, surname, number);
+    }
+    catch(char)
+    {
+        std::cout << "Error! Input should be a number" << std::endl
+        << "Number's value has been set 0." << std::endl;
+    }
+    catch(int err)
+    {
+        if(err > 0)
+        {
+            std::cout << "You inserted " << err << "digits too much." << std::endl;
+        }
+        else
+        {
+            std::cout << "You inserted " << err*(-1) << " digits too little." << std::endl;
+        }
+        std::cout << "Number's value has been set 0." << std::endl;
+    }
+    
+    ad.scan_Adress();
+    std::cout << "#age:" << std::endl;
+    std::cin>>age;
+    std::cout << "#balance: ";
+    std::cin >> balance;
+    D_Users.push_back(Detailed_TUser(name, surname, stoi(number), adress, age, ad, balance));
+}
 //usuwanie użytkownika
 void TData::removeUser()
 {
@@ -254,7 +346,6 @@ bool TData::exists(std::string na, std::string su, int nu)
             return true;
         }
     }
-
     std::cout << "There is not such an user" << std::endl;
     std::cout << std::endl;
     return false;
@@ -270,7 +361,6 @@ bool TData::exists(std::string na, std::string su)
             return true;
         }
     }
-
     std::cout << "There is not such an user" << std::endl;
     std::cout << std::endl;
     return false;
@@ -286,7 +376,6 @@ bool TData::exists(int nu)
             return true;
         }
     }
-
     std::cout << "There is not such an user" << std::endl;
     std::cout << std::endl;
     return false;
@@ -335,47 +424,66 @@ std::vector<TUser>::iterator TData::findUser(int nu)
 
  void TData::menu()
  {
-    std::string ans;
+    int ans;
     do
     {
+        std::cout << "Users:" << std::endl;
         for(unsigned int i = 0; i < Users.size(); ++i)
-            std::cout << i <<". " << Users[i] << std::endl;
+            std::cout << i+1 <<". " << Users[i] << std::endl;
+        std::cout << "Detailed users:" << std::endl;
+        for(unsigned int i = 0; i < D_Users.size(); ++i)
+            std::cout << i+1 <<". " << D_Users[i] << std::endl;
         
         std::cout << "What would you like to do?" << std::endl << "1. Add new user"
         << std::endl <<"2. Add new user with balance" << std::endl << "3. Show the number of users in base" << std::endl << 
         "4. Delete an user" << std::endl << "5. Send a message" << std::endl << "6. Find user by name" 
-        << std::endl << "7. Find user by phone number" << std::endl << "8. Quit"<< std::endl;
+        << std::endl << "7. Find user by phone number" << std::endl << "8. Add new detailed user"<< std::endl
+        << "9. Add new detailed user with balance" << std::endl << "10. Show users" << std::endl
+        << "11. Show detailed users." << std::endl << "12. Quit" << std::endl;
         
-        while(!(std::cin>>ans) || ans.length() > 1 || ans[0] > '8' || ans[0] < '0')
+        while(!(std::cin>> ans) || ans > 12)
             std::cout << "Command not avaible. Try again." << std::endl;
 
-        switch(ans[0])
+        switch(ans)
         {
-            case '1':
+            case 1:
                addNewUser();
                break;
-            case '2':
+            case 2:
                 addNewUserWithBalance();
                 break;
-            case '3':
+            case 3:
                 showNumberOfUsers();
                 break;
-            case '4':
+            case 4:
                 removeUser();
                 break;
-            case '5':
+            case 5:
                 sendMessage();
                 break;
-            case '6':
+            case 6:
                 showUserByName();
                 break;
-            case '7':
+            case 7:
                 showUserByNumber();
                 break;
+            case 8:
+                addNewDetailedUser();
+            case 9:
+                addNewDetailedUserWithBalance();
+            case 10:
+                for(unsigned int i = 0; i < Users.size(); ++i)
+                    Users[i].show();
+                break;
+            case 11:
+                for(unsigned int i = 0; i < D_Users.size(); ++i)
+                    D_Users[i].show();
+                break;
+
             default:
                 break; 
         }
 
-    } while (ans[0] != '8');
+    } while (ans != 12);
     
 }

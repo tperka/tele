@@ -9,11 +9,13 @@ void Detailed_TUser::show()
     std::cout << "address: " << home_adress;
     std::cout << "balance: " << Balance.getBalance() << std::endl;
     std::cout << "days left: " << Balance.getDaysLeft() << std::endl;
-    std::cout << "due: " << due << std::endl;
     std::cout << std::endl;
 }
 
-Detailed_TUser::~Detailed_TUser()
+
+
+std::ostream& operator<<(std::ostream& os, const Detailed_TUser& a)
 {
-    TUser::~TUser();
+    os << a.name << " " << a.surname << " " << std::to_string(a.number);
+    return os;
 }

@@ -33,7 +33,7 @@ protected:
     int number;
 
     TBalance Balance;
-    double due;
+    
 
     //wiadomości tekstowe wysłane przez użytkownika
     std::vector<TMessage<std::string> > Mssent;
@@ -49,8 +49,6 @@ public:
     //konstruktor
     TUser(std::string na, std::string su, int nu, TData* a, double b = 0.00);
 
-    //destruktor
-    virtual ~TUser();
     //wyświetlanie atrybutów użytkownika
     virtual void show();
 
@@ -65,8 +63,6 @@ public:
     template<typename T>
     void topUp(T a)
     {
-        due -= a;
-
         Balance.topUp(a);
     }
 

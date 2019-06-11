@@ -14,7 +14,7 @@
 #define TELE_DATA_H
 
 #include "user.hpp"
-
+#include "detailed_user.hpp"
 #include <vector>
 
 //klasa stanowiąca bazę danych aktywnych użytkowników
@@ -23,20 +23,22 @@ class TData{
 private:
 
     std::vector<TUser> Users;
+    std::vector<Detailed_TUser> D_Users;
     TData* adress;
 
 public:
 
     //funkcje składowe
-    //
+    TData();
     //dodawanie użytkownika do bazy: imię, nazwisko, numer
     void addNewUser();
+    void addNewDetailedUser();
     //dodawanie użytkownika do bazy: imię, nazwisko, numer, stan konta
     void addNewUserWithBalance();
-
+    void addNewDetailedUserWithBalance();
+    
     //usuwanie użytkownika z bazy
     void removeUser();
-
     //zwracanie liczby użytkowników
     int numberOfUsers();
     //wyświetlanie liczby użytkowników
