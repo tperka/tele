@@ -24,7 +24,7 @@ class TData;
 //klasa użytkownika
 class TUser {
 
-private:
+protected:
 
     TData* adress;
 

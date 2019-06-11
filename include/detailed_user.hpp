@@ -17,6 +17,8 @@ class Detailed_TUser : public TUser
         age = ag;
         home_adress = ad;
     }
+
+    void show();
 };
 
 #endif
