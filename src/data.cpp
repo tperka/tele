@@ -440,7 +440,8 @@ std::vector<TUser>::iterator TData::findUser(int nu)
         for(unsigned int i = 0; i < D_Users.size(); ++i)
             std::cout << i+1 <<". " << D_Users[i] << std::endl;
         
-        std::cout << "What would you like to do?" << std::endl << "1. Add new user"
+        
+        std::cout <<std::endl<< "What would you like to do?" << std::endl << "1. Add new user"
         << std::endl <<"2. Add new user with balance" << std::endl << "3. Show the number of users in base" << std::endl << 
         "4. Delete an user" << std::endl << "5. Send a message" << std::endl << "6. Find user by name" 
         << std::endl << "7. Find user by phone number" << std::endl << "8. Add new detailed user"<< std::endl
