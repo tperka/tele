@@ -92,7 +92,7 @@ void TData::addNewDetailedUser()
     std::cout << "#age:" << std::endl;
     std::cin>>age;
     D_Users.push_back(Detailed_TUser(name, surname, stoi(number), adress, age, ad));
-    if(age <= 0)
+    if(age < 0)
         throw age;
 }
 

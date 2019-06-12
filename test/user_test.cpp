@@ -9,6 +9,7 @@
 
 #include "user.hpp"
 #include "data.hpp"
+#include "detailed_user.hpp"
 #include <sstream>
 
 
@@ -56,5 +57,36 @@ BOOST_AUTO_TEST_CASE(Print_out_test)
     std::cout.rdbuf(cout_buff);
 
 	BOOST_CHECK_EQUAL(class_output.str(), output);
+
+}
+
+BOOST_AUTO_TEST_CASE(virtual_fun_test)
+{
+    
+    Adress ad;
+    TUser* a = new Detailed_TUser("aa", "bb", 1234, check, 12, ad);
+   
+    std::ostringstream expected_output;
+ 	auto cout_buff = std::cout.rdbuf();
+	std::cout.rdbuf(expected_output.rdbuf());
+    
+    std::cout << "name: " << "aa" << std::endl;
+    std::cout << "surname: " << "bb" << std::endl;
+    std::cout << "number: " << 1234 << std::endl;
+    std::cout << "age: " << 12 << std::endl;
+    std::cout << "address: " << ad;
+    std::cout << "balance: " << 0.00 << std::endl;
+    std::cout << "days left: " << 1 << std::endl;
+    std::cout << std::endl;
+    std::cout.rdbuf(cout_buff);
+    
+    std::ostringstream class_output;
+ 	auto co_buff = std::cout.rdbuf();
+	std::cout.rdbuf(class_output.rdbuf());
+    a->show();
+    std::cout.rdbuf(co_buff);
+    
+
+    BOOST_CHECK_EQUAL(class_output.str(), expected_output.str());
 
 }
