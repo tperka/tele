@@ -1,3 +1,9 @@
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 #ifndef TELE_ADRESS_HPP
 #define TELE_ADRESS_HPP
 

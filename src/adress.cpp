@@ -1,3 +1,9 @@
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 #include "adress.hpp"
 #include <iostream>
 #include <limits>
@@ -18,13 +24,12 @@ void Adress::scan_Adress()
     while (!(getline(cin, input)) || !isName(input)) 
         cout << "Enter correct street name (only letters and spaces)" << endl;
     street_name = input;
-    cin.clear();
-    cin.ignore( numeric_limits < streamsize >::max(), '\n' );
+    
     cout << "#house number: " << endl;
     while (!(cin>>input) || !isNumber(input)) 
         cout << "Enter correct house number" << endl;
     house_number = stoi(input);
-        cin.clear();
+    cin.clear();
     cin.ignore( numeric_limits < streamsize >::max(), '\n' );
     cout << "#city: " << endl;
     while (!(getline(cin, input)) || !isName(input)) 

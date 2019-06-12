@@ -1,3 +1,9 @@
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 #ifndef TELE_DETAILED_USER_HPP
 #define TELE_DETAILED_USER_HPP
 
@@ -18,7 +24,7 @@ class Detailed_TUser : public TUser
         home_adress = ad;
     }
     void show();
-    ~Detailed_TUser(){}
+    ~Detailed_TUser() {};
     friend std::ostream& operator<<(std::ostream& os, const Detailed_TUser& a);
 };
 std::ostream& operator<<(std::ostream& os, const Detailed_TUser& a);

@@ -1,3 +1,9 @@
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 #include "detailed_user.hpp"
 
 void Detailed_TUser::show()

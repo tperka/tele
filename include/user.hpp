@@ -1,14 +1,9 @@
-//
-//  user.h
-//  lab03
-//
-//  PROI: PROJECT NO3 (LAB03)
-//
-//  Coordinator: Wiktor Kusmirek
-//
-//  Created by Patryk Jan Sozański (index number: 300258) on 05/05/2019.
-//  Copyright © 2019 Patryk Jan Sozański. All rights reserved.
-//
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 
 #ifndef TELE_USER_H
 #define TELE_USER_H
@@ -48,7 +43,7 @@ public:
 
     //konstruktor
     TUser(std::string na, std::string su, int nu, TData* a, double b = 0.00);
-
+    virtual ~TUser() {};
     //wyświetlanie atrybutów użytkownika
     virtual void show();
 

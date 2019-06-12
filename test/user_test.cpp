@@ -1,3 +1,9 @@
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 #define BOOST_TEST_MODULE PROI_proj_4_test
 #include <boost/test/included/unit_test.hpp>
 
@@ -8,7 +14,6 @@
 
 using namespace boost::unit_test;
 
-//g++ -I ../include user_test.cpp -lboost_unit_test_framework
 
 TData* check = new TData;
 BOOST_AUTO_TEST_CASE(User_Constructor_test)
@@ -26,6 +31,10 @@ BOOST_AUTO_TEST_CASE(User_Constructor_test)
 	    BOOST_CHECK_EQUAL(NewUser.getNumber(), number[i]);
 	}
     
+    
+}
+BOOST_AUTO_TEST_CASE(Exception_test)
+{
     BOOST_CHECK_THROW(TUser Throw("abc", "def", -123, check), int);
 }
 
@@ -40,14 +49,12 @@ BOOST_AUTO_TEST_CASE(Print_out_test)
 	TUser NewUser(name, surname, number, check);
 	output = name +" "+ surname+" "+ std::to_string(number);
 
- 	auto cout_buff = std::cout.rdbuf(); // save pointer to std::cout buffer
-	std::cout.rdbuf(class_output.rdbuf()); // substitute internal std::cout buffer with
+ 	auto cout_buff = std::cout.rdbuf();
+	std::cout.rdbuf(class_output.rdbuf());
 
     std::cout << NewUser;
     std::cout.rdbuf(cout_buff);
 
 	BOOST_CHECK_EQUAL(class_output.str(), output);
-
-
 
 }

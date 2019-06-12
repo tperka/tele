@@ -1,12 +1,13 @@
 /**
- * Autor: Tymoteusz Perka
- * Nr indeksu: 300243
- * Prowadzący: mgr Wiktor Kuśmirek
- * Projekt: 9. Symulacja teatru
-**/
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 
 #include "Input.hpp"
 #include <iostream>
+#include <limits>
 
 bool isNumber(std::string input)
 {
@@ -32,11 +33,16 @@ bool isName(std::string input)
 
 void scanUser(std::string& name, std::string& surname, std::string& number)
 {
-    std::cout << "#name: ";
-    std::cin >> name;
+    std::cin.clear();
+    std::cin.ignore( std::numeric_limits < std::streamsize >::max(), '\n' );
+    std::cout << "#name: " << std::endl;
+    while (!(getline(std::cin, name)) || !isName(name)) 
+        std::cout << "Enter correct name (only letters and spaces)" << std::endl;
 
-    std::cout << "#surname: ";
-    std::cin >> surname;
+    
+    std::cout << "#surname: " << std::endl;
+    while (!(getline(std::cin, surname)) || !isName(surname)) 
+        std::cout << "Enter correct name (only letters and spaces)" << std::endl;
 
     std::cout << "#number: ";
     std::cin >> number;

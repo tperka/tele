@@ -33,7 +33,9 @@ tests:
 	$(CC) $(CFLAGS) $(INC) -c $(SRCDIR)/data.cpp -o $(BUILDDIR)/data.o
 	$(CC) $(CFLAGS) $(INC) -c $(SRCDIR)/balance.cpp -o $(BUILDDIR)/balance.o
 	$(CC) $(CFLAGS) $(INC) -c $(SRCDIR)/Input.cpp -o $(BUILDDIR)/Input.o
-	$(CC) $(BUILDDIR)/test.o $(BUILDDIR)/user.o $(BUILDDIR)/data.o $(BUILDDIR)/Input.o $(BUILDDIR)/balance.o -o $(BINDIR)/test -lboost_unit_test_framework
+	$(CC) $(CFLAGS) $(INC) -c $(SRCDIR)/adress.cpp -o $(BUILDDIR)/adress.o
+	$(CC) $(CFLAGS) $(INC) -c $(SRCDIR)/detailed_user.cpp -o $(BUILDDIR)/detailed_user.o
+	$(CC) $(BUILDDIR)/test.o $(BUILDDIR)/user.o $(BUILDDIR)/data.o $(BUILDDIR)/detailed_user.o $(BUILDDIR)/adress.o $(BUILDDIR)/Input.o $(BUILDDIR)/balance.o -o $(BINDIR)/test -lboost_unit_test_framework
 
 clean:
 	@echo " Cleaning..."; 

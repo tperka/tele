@@ -1,14 +1,9 @@
-//
-//  data.cpp
-//  lab03
-//
-//  PROI: PROJECT NO3 (LAB03)
-//
-//  Coordinator: Wiktor Kusmirek
-//
-//  Created by Patryk Jan Sozański (index number: 300258) on 05/05/2019.
-//  Copyright © 2019 Patryk Jan Sozański. All rights reserved.
-//
+/**
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 
 #include "data.hpp"
 #include "Input.hpp"
@@ -97,6 +92,8 @@ void TData::addNewDetailedUser()
     std::cout << "#age:" << std::endl;
     std::cin>>age;
     D_Users.push_back(Detailed_TUser(name, surname, stoi(number), adress, age, ad));
+    if(age <= 0)
+        throw age;
 }
 
 //dodawanie użytkownika
@@ -174,6 +171,8 @@ void TData::addNewDetailedUserWithBalance()
     std::cout << "#balance: ";
     std::cin >> balance;
     D_Users.push_back(Detailed_TUser(name, surname, stoi(number), adress, age, ad, balance));
+    if(age < 0)
+        throw age;
 }
 //usuwanie użytkownika
 void TData::removeUser()
@@ -225,6 +224,13 @@ void TData::showNumberOfUsers()
     std::cout << "the number of users: " << Users.size() << std::endl;
     std::cout << std::endl;
 }
+
+void TData::showNumberOfDUsers()
+{
+    std::cout << "the number of detailed users: " << D_Users.size() << std::endl;
+    std::cout << std::endl;
+}
+
 
 //wyświetlanie użytkownika
 void TData::showUserByName()
@@ -424,7 +430,7 @@ std::vector<TUser>::iterator TData::findUser(int nu)
 
  void TData::menu()
  {
-    int ans;
+    std::string ans;
     do
     {
         std::cout << "Users:" << std::endl;
@@ -438,13 +444,14 @@ std::vector<TUser>::iterator TData::findUser(int nu)
         << std::endl <<"2. Add new user with balance" << std::endl << "3. Show the number of users in base" << std::endl << 
         "4. Delete an user" << std::endl << "5. Send a message" << std::endl << "6. Find user by name" 
         << std::endl << "7. Find user by phone number" << std::endl << "8. Add new detailed user"<< std::endl
-        << "9. Add new detailed user with balance" << std::endl << "10. Show users" << std::endl
-        << "11. Show detailed users." << std::endl << "12. Quit" << std::endl;
+        << "9. Add new detailed user with balance" << std::endl << "10. Show users info" << std::endl
+        << "11. Show number of detailed users." << std::endl << "12. Show detailed users info" << std::endl
+        << "13. Quit" << std::endl;
         
-        while(!(std::cin>> ans) || ans > 12)
+        while(!(std::cin>> ans) || ans.length()>2 || !isNumber(ans) || stoi(ans) > 13)
             std::cout << "Command not avaible. Try again." << std::endl;
 
-        switch(ans)
+        switch(stoi(ans))
         {
             case 1:
                addNewUser();
@@ -468,14 +475,35 @@ std::vector<TUser>::iterator TData::findUser(int nu)
                 showUserByNumber();
                 break;
             case 8:
-                addNewDetailedUser();
+                try
+                {
+                    addNewDetailedUser();    
+                }
+                catch(int)
+                {
+                    std::cout << "Age cannot be negative! User not added." << std::endl;
+                    D_Users.pop_back();
+                }
+                break;
             case 9:
-                addNewDetailedUserWithBalance();
+                try
+                {
+                    addNewDetailedUserWithBalance();    
+                }
+                catch(int)
+                {
+                    std::cout << "Age cannot be negative! User not added." << std::endl;
+                    D_Users.pop_back();
+                }
+                break;
             case 10:
                 for(unsigned int i = 0; i < Users.size(); ++i)
                     Users[i].show();
                 break;
             case 11:
+                showNumberOfDUsers();
+                break;
+            case 12:
                 for(unsigned int i = 0; i < D_Users.size(); ++i)
                     D_Users[i].show();
                 break;
@@ -484,6 +512,6 @@ std::vector<TUser>::iterator TData::findUser(int nu)
                 break; 
         }
 
-    } while (ans != 12);
+    } while (stoi(ans) != 13);
     
 }

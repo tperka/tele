@@ -1,9 +1,9 @@
 /**
- * Autor: Tymoteusz Perka
- * Nr indeksu: 300243
- * Prowadzący: mgr Wiktor Kuśmirek
- * Projekt: 9. Symulacja teatru
-**/
+ * author: Tymoteusz Perka
+ * index number: 300243
+ * coordinator: Wiktor Kuśmirek
+ * project: Telecommunication operator
+ */
 
 
 
